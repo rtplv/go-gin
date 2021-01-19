@@ -1,6 +1,6 @@
-# app
+# go-gin-boilerplate
 
-OCAS API Proxy
+Go Gin API server boilerplate
 
 ## Deploy
 
