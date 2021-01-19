@@ -8,6 +8,7 @@ import (
 func setExampleRoutes(r *gin.RouterGroup) {
 	taskRouter := r.Group("/example")
 	{
-		taskRouter.GET("/:guid", example.Get)
+		taskRouter.POST("", example.Create)
+		taskRouter.GET("/:id", example.Get)
 	}
 }

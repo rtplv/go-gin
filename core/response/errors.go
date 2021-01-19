@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"net/http"
+	"strings"
 )
 
 type Errors struct {
@@ -12,6 +13,21 @@ type Errors struct {
 
 type ErrorMessage struct {
 	Message string `json:"message"`
+}
+
+func ValidationError(ctx *gin.Context, err error) {
+	errorMessages := make([]ErrorMessage, 0)
+	logrus.Error(err.Error(), "Client request validation error")
+
+	for _, msg := range strings.Split(err.Error(), "\n") {
+		errorMessages = append(errorMessages, ErrorMessage{
+			Message: msg,
+		})
+	}
+
+	ctx.JSON(http.StatusBadRequest, Errors{
+		Errors: errorMessages,
+	})
 }
 
 func InternalServerError(ctx *gin.Context, err error) {

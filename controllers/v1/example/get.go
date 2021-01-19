@@ -9,13 +9,13 @@ import (
 // @Summary Example controller
 // @Tags example
 // @Produce json
-// @Param id path string true "guid джобы"
+// @Param id path string true " "
 // @Success 200 {object} models.Example
 // @Failure default {object} response.Errors
-// @Router /id/{id} [get]
+// @Router /v1/example/{id} [get]
 func Get(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
-		"action": "example",
+		"action": "example/get",
 		"id": ctx.Param("id"),
 	})
 }
