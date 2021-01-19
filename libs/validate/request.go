@@ -5,8 +5,8 @@ import (
 	"strings"
 )
 
-// GetValidationMessages extract errors from error type
-func GetValidationMessages(err error) []response.ErrorMessage {
+// GetValidationErrors extract errors from error type
+func GetValidationErrors(err error) []response.ErrorMessage {
 	errorMessages := make([]response.ErrorMessage, 0)
 
 	for _, msg := range strings.Split(err.Error(), "\n") {
