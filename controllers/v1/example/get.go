@@ -13,9 +13,9 @@ import (
 // @Success 200 {object} models.Example
 // @Failure default {object} response.Errors
 // @Router /id/{id} [get]
-func Get(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
+func Get(ctx *gin.Context) {
+	ctx.JSON(http.StatusOK, gin.H{
 		"action": "example",
-		"id": c.Param("id"),
+		"id": ctx.Param("id"),
 	})
 }
