@@ -1,1 +1,1 @@
-# go-gin
+# go-gin-boilerplate
