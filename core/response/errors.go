@@ -35,8 +35,8 @@ func InternalServerError(ctx *gin.Context, err error) {
 
 	ctx.JSON(http.StatusInternalServerError, Errors{
 		Errors: []ErrorMessage{
-			{ Message: "Внутренняя ошибка сервера." },
-			{ Message: err.Error() },
+			{Message: "Internal Server Error."},
+			{Message: err.Error()},
 		},
 	})
 }
