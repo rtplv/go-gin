@@ -1,24 +1,23 @@
-package migrations
+package main
 
 import (
+	"app/connections"
 	"app/core/models"
 	"github.com/sirupsen/logrus"
-	"gorm.io/gorm"
 )
 
-type ReportsMigration struct {
-	DB *gorm.DB
+type ExampleMigration struct {
 }
 
-func (m ReportsMigration) Up() {
+func (m ExampleMigration) up() {
 	model := &models.Example{}
-	tableExist := m.DB.Migrator().HasTable(model)
+	tableExist := connections.DB.Migrator().HasTable(model)
 
 	if tableExist {
 		logrus.Fatalf("Table %s already exist", model.TableName())
 	}
 
-	err := m.DB.Migrator().AutoMigrate(&model)
+	err := connections.DB.Migrator().AutoMigrate(&model)
 
 	if err != nil {
 		logrus.Fatal("Error on autoMigrate", err)
@@ -27,15 +26,15 @@ func (m ReportsMigration) Up() {
 	logrus.Info("Successfully migrate!")
 }
 
-func (m ReportsMigration) Down() {
+func (m ExampleMigration) down() {
 	model := models.Example{}
-	tableExist := m.DB.Migrator().HasTable(model)
+	tableExist := connections.DB.Migrator().HasTable(model)
 
 	if !tableExist {
 		logrus.Fatalf("Table %s does not exist", model.TableName())
 	}
 
-	err := m.DB.Migrator().DropTable(model)
+	err := connections.DB.Migrator().DropTable(model)
 
 	if err != nil {
 		logrus.Fatal("Error on autoMigrate", err.Error())

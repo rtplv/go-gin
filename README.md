@@ -28,3 +28,11 @@ docker-compose up
 ```shell
 docker-compose down
 ```
+
+## Migrate
+
+```shell
+cd ./migrations
+go run . up
+go run . down
+```
