@@ -11,11 +11,13 @@ func main() {
 	err := godotenv.Load("../.env")
 	if err != nil {
 		fmt.Println(err.Error())
+		return
 	}
 
 	err = connections.InitDB()
 	if err != nil {
 		fmt.Println(err.Error())
+		return
 	}
 
 	switch os.Args[1] {
